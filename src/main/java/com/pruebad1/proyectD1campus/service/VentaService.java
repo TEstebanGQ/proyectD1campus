@@ -2,9 +2,10 @@ package com.pruebad1.proyectD1campus.service;
 
 import com.pruebad1.proyectD1campus.dto.request.VentaRequest;
 import com.pruebad1.proyectD1campus.dto.response.VentasResponse;
-import org.hibernate.mapping.List;
 
-
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 public interface VentaService {
     VentasResponse guardar(VentaRequest dto);

@@ -51,9 +51,7 @@ public class VentaController {
 
     // http://localhost:8080/api/ventas/mes-anho?mes=8&anho=2026
     @GetMapping("/mes-anho")
-    public ResponseEntity<List<VentasResponse>> buscarPorMesYAnho(
-            @RequestParam int mes,
-            @RequestParam int anho) {
+    public ResponseEntity<List<VentasResponse>> buscarPorMesYAnho(@RequestParam int mes, @RequestParam int anho) {
         return ResponseEntity.ok(ventaService.buscarPorMesYAnho(mes, anho));
     }
 
@@ -65,9 +63,7 @@ public class VentaController {
 
     // http://localhost:8080/api/ventas/fecha-entre?inicio=2026-01-01&fin=2026-12-31
     @GetMapping("/fecha-entre")
-    public ResponseEntity<List<VentasResponse>> filtrarFechaEntre(
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date inicio,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fin) {
+    public ResponseEntity<List<VentasResponse>> filtrarFechaEntre(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date inicio, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fin) {
         return ResponseEntity.ok(ventaService.filtrarFechaEntre(inicio, fin));
     }
 }
