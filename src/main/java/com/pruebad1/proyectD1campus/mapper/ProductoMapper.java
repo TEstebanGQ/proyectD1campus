@@ -9,8 +9,10 @@ import org.springframework.stereotype.Component;
 
 public class ProductoMapper {
 
-    public ProductoResponse entityToDto(Producto producto){
-        if(producto == null ) return null;
+    public ProductoResponse entityToDto(Producto producto) {
+        if (producto == null) {
+            return null;
+        }
         return new ProductoResponse(
                 producto.getId(),
                 producto.getNombre(),
@@ -20,8 +22,10 @@ public class ProductoMapper {
 
     }
 
-    public Producto dtoToEntity(ProductResquest dto){
-        if(dto == null) return null;
+    public Producto dtoToEntity(ProductResquest dto) {
+        if (dto == null) {
+            return null;
+        }
         Producto producto = new Producto();
         producto.setNombre(dto.nombre());
         producto.setDescripcion(dto.descripcion());
@@ -31,7 +35,9 @@ public class ProductoMapper {
     }
 
     public void updateEntityFromDto(Producto producto, ProductResquest dto) {
-        if (dto == null || producto == null) return;
+        if (dto == null || producto == null) {
+            return;
+        }
 
         producto.setNombre(dto.nombre());
         producto.setDescripcion(dto.descripcion());

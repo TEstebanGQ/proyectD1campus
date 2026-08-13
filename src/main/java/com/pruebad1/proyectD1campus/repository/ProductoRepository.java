@@ -11,8 +11,8 @@ import java.util.List;
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     List<Producto> findByNombre(String nombre);
-
     List<Producto> findByPrecioVentaGreaterThanEqual(BigDecimal precio);
+    List<Producto> findByPrecioVentaLessThanEqual(BigDecimal precio);
     List<Producto> findByPrecioVentaBetween(BigDecimal precioMin, BigDecimal precioMax);
     List<Producto> findByNombreAndPrecioVentaGreaterThanEqual(String nombre, BigDecimal precio);
 }
