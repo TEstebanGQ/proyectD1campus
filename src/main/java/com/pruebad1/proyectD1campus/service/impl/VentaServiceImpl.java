@@ -2,6 +2,7 @@ package com.pruebad1.proyectD1campus.service.impl;
 
 import com.pruebad1.proyectD1campus.dto.request.VentaRequest;
 import com.pruebad1.proyectD1campus.dto.response.VentasResponse;
+import com.pruebad1.proyectD1campus.exception.ResourceNotFoundException;
 import com.pruebad1.proyectD1campus.mapper.VentaMapper;
 import com.pruebad1.proyectD1campus.model.Venta;
 import com.pruebad1.proyectD1campus.repository.VentaRepository;
@@ -35,13 +36,13 @@ public class VentaServiceImpl implements VentaService {
 
     @Override
     public VentasResponse obtenerPorId(Long id) {
-        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró la venta con id: " + id));
+        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontró la venta con id: " + id));
         return ventaMapper.entityToDto(venta);
     }
 
     @Override
     public VentasResponse actualizarVenta(Long id, VentaRequest dto) {
-        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró la venta con id: " + id));
+        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontró la venta con id: " + id));
         ventaMapper.updateEntityFromDto(venta, dto);
         Venta ventaActualizada = ventaRepository.save(venta);
         return ventaMapper.entityToDto(ventaActualizada);
@@ -49,7 +50,7 @@ public class VentaServiceImpl implements VentaService {
 
     @Override
     public void eliminarVenta(Long id) {
-        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró la venta con id: " + id));
+        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontró la venta con id: " + id));
         ventaRepository.delete(venta);
     }
 

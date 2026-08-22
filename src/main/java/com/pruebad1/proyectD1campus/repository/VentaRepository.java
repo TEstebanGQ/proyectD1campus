@@ -13,11 +13,7 @@ import java.util.List;
 @Repository
 public interface VentaRepository extends JpaRepository<Venta, Long> {
 
-    @Query("""
-        SELECT v FROM Venta v
-        WHERE MONTH(v.fecha) = :mes
-        AND YEAR(v.fecha) = :anho
-        """)
+    @Query("SELECT v FROM Venta v WHERE MONTH(v.fecha) = :mes AND YEAR(v.fecha) = :anho")
     List<Venta> findByMesYAnho(
             @Param("mes") int mes,
             @Param("anho") int anho

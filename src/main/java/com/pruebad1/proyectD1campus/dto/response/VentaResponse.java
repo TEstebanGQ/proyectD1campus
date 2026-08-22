@@ -6,19 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductoResponse {
+public class VentaResponse {
     private Long id;
-    private String nombre;
-    private BigDecimal precioCompra;
-    private BigDecimal precioVenta;
+    private Date fecha;
+    private BigDecimal total;
 
     public Long id() { return id; }
-    public String nombre() { return nombre; }
-    public BigDecimal precioCompra() { return precioCompra; }
-    public BigDecimal precioVenta() { return precioVenta; }
+    public Date fecha() { return fecha; }
+    public BigDecimal total() { return total; }
 }

@@ -2,6 +2,7 @@ package com.pruebad1.proyectD1campus.service.impl;
 
 import com.pruebad1.proyectD1campus.dto.request.ProductResquest;
 import com.pruebad1.proyectD1campus.dto.response.ProductoResponse;
+import com.pruebad1.proyectD1campus.exception.ResourceNotFoundException;
 import com.pruebad1.proyectD1campus.mapper.ProductoMapper;
 import com.pruebad1.proyectD1campus.model.Producto;
 import com.pruebad1.proyectD1campus.repository.ProductoRepository;
@@ -32,13 +33,13 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public ProductoResponse obtenerPorId(Long id) {
-        Producto producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró el id: " + id));
+        Producto producto = productoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontró el producto con id: " + id));
         return productoMapper.entityToDto(producto);
     }
 
     @Override
     public ProductoResponse actualizarProducto(Long id, ProductResquest dto) {
-        Producto producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró el producto con id: " + id));
+        Producto producto = productoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontró el producto con id: " + id));
         productoMapper.updateEntityFromDto(producto, dto);
         Producto productoActualizado = productoRepository.save(producto);
         return productoMapper.entityToDto(productoActualizado);
@@ -46,7 +47,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public void eliminarProducto(Long id) {
-        Producto producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró el id para eliminar: " + id));
+        Producto producto = productoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontró el producto para eliminar con id: " + id));
         productoRepository.delete(producto);
     }
 
